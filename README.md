@@ -166,6 +166,20 @@ As an event organizer, I want to create and manage events, handle attendee regis
 4. Display event details, schedules, and other relevant information to participants.
 5. Provide features for event feedback or rating after the event concludes.
 
+## Recommended Tutorials:
+1. **Tutorial for Beginners: Learn Node in 1 Hour**
+<br>LINK: https://www.youtube.com/watch?v=TlB_eWDSMt4
+<br>Learn the Baisc of Nodejs
+
+2. **How to build a REST API with Node js & Express**
+   <br>LINK: https://www.youtube.com/watch?v=pKd0Rpw7O48
+
+  **Build a REST API with Node JS and Express | CRUD API Tutorial**
+  <br>LINK: https://www.youtube.com/watch?v=l8WPWK9mS5M
+
+  <br>Learn how to create RestFUL API and Express
+
+
 ## Tools You Might Need
 
 1. **Node.js**: Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. It allows you to run JavaScript code on the server-side, making it the foundation of Node.js backend development. You need to install Node.js to run your Node.js backend projects.
