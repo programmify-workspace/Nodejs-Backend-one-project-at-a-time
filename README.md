@@ -173,8 +173,7 @@ As an event organizer, I want to create and manage events, handle attendee regis
 
 2. **How to build a REST API with Node js & Express**
    <br>LINK: https://www.youtube.com/watch?v=pKd0Rpw7O48
-
-  **Build a REST API with Node JS and Express | CRUD API Tutorial**
+   <br>**Modern - Build a REST API with Node JS and Express | CRUD API Tutorial**
   <br>LINK: https://www.youtube.com/watch?v=l8WPWK9mS5M
 
   <br>Learn how to create RestFUL API and Express
