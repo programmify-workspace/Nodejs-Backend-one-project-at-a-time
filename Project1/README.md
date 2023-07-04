@@ -21,4 +21,6 @@ As a developer, I want to understand how Node.js MVC (Model-View-Controller) fra
 7. Start building your "Hello, World!" application by creating the necessary files and configuring the routes.
 8. Explore the framework's directory structure and locate the directories.
 9. Implement the basic CRUD functionality for your sample entity by creating the necessary routes, controller methods and views.
-10. Run <node index.js> and test your application locally to ensure everything is working as expected.
+10. Download Postman (API development and testing tool) from Postman website and launch the application.
+11. Enter the URL for the get, post, delete or update requests in Postman to test your application's functionality.
+12. Run <node index.js> and test your application locally to ensure everything is working as expected.
