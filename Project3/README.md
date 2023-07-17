@@ -14,4 +14,7 @@ As a user, I want to generate PDF documents dynamically based on specific data o
 1. Clone the repository: `git clone <repository url>`.
 2. Navigate to the project folder: `cd project2`.
 3. Install the required dependencies: `npm install`.
-4. Run node `index.js`.
+4. Open XAMPP Control Panel and start the Apache and MySQL servers.
+5. Create a database and a table in PHPMyAdmin or a similar database management tool.
+6. In the table, create 7 columns: first_name, last_name, email, age, nationality, address.
+7. Run the project: `npm run watch`.
