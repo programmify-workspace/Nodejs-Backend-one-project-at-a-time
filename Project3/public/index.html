@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Generation Form</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section>
+        <div class="heading">
+            <h2>Personal Information</h2>
+            <p>Generate your personal information in pdf form</p>
+        </div>
+        <form action="/generate-pdf" method="post">
+            
+            <div class="form-div">
+                <label for="firstName"><span style="color: red;">*</span> First name:</label>
+                <input class="input" type="text" id="firstName" name="firstName" required>
+            </div>
+
+            <div class="form-div">
+                <label for="lastName">Last name:</label>
+                <input class="input" type="text" id="lastName" name="lastName">
+            </div>
+
+            <div class="form-div">
+                <label for="email"><span style="color: red;">*</span> Email:</label>
+                <input class="input" type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-div">
+                <label for="age">Age:</label>
+                <input class="input" type="number" id="age" name="age" >
+            </div>
+
+            
+            <div class="form-div">
+                <label for="nationality"><span style="color: red;">*</span> Nationality:</label>
+                <input class="input" type="text" id="nationality" name="nationality" required>
+            </div>
+
+            <div class="form-div">
+                <label for="address">Address:</label>
+                <input class="input" type="text" id="address" name="address" >
+            </div>
+                
+            <button type="submit" id="generateButton">Generate PDF</button>
+
+            <script>
+            const generateButton = document.getElementById('generateButton');
+  
+            generateButton.addEventListener('click', function() {
+                alert('Preparing PDF for download...');
+            });
+</script>
+
+
+        </form>
+    </section>
+</body>
+</html>
+
