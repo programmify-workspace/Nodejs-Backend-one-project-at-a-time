@@ -6,73 +6,100 @@ const path = require('path');
 const multer = require('multer');
 const mysql = require('mysql');
 
-
 const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// multer config
-
+// Multer config
 let storage = multer.diskStorage({
-    destination:(req,file,callback)=>{
-        callback(null, "./uploads/")
-    },
-    filename:(req,file,callback)=>{
-        callback(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname))
-    }
-})
-
-let upload = multer({
-    storage:storage
-})
-
-// Create connection
-
-const pool = mysql.createPool({
-    host:"localhost",
-    user:"root",
-    password:"",
-    database:"csv_file_data"
-})
-
-app.get('/', (req, res)=>{
-    res.sendFile(__dirname+'/index.html');
+  destination: (req, file, callback) => {
+    callback(null, "./uploads/");
+  },
+  filename: (req, file, callback) => {
+    callback(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  },
 });
 
-app.post('/import-csv', upload.single('import-csv'),(req, res)=>{
-    console.log(req.file.path)
-    uploadCsv(__dirname + "/uploads/" + req.file.filename)
-    res.send("Records inputed!")
-})
+let upload = multer({
+  storage: storage,
+});
 
-function uploadCsv(path){
-    console.log(path)
-    let stream = fs.createReadStream(path)
-    let csvDataColl = []
-    let fileStream = csv
+// Create connection
+const pool = mysql.createPool({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "csv_file_data",
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
+
+app.post('/import-csv', upload.single('import-csv'), (req, res) => {
+  console.log(req.file.path);
+  uploadCsv(__dirname + "/uploads/" + req.file.filename);
+  res.send("Records inputed!");
+});
+
+function uploadCsv(path) {
+  console.log(path);
+  let stream = fs.createReadStream(path);
+  let csvDataColl = [];
+  let fileStream = csv
     .parse()
-    .on('data', function(data){
-        csvDataColl.push(data)
+    .on('data', function (data) {
+      csvDataColl.push(data);
     })
-    .on('end', function(){
-        csvDataColl.shift()
-        pool.getConnection((error, connection)=>{
-            if(error){
-                console.log(error)
-            }else{
-                let query = "INSERT INTO users (Name,Age,Country) VALUES ?"
-                connection.query(query, [csvDataColl],(error, res)=>{
-                    console.log(error || res);
-                })
-            }
-        })
+    .on('end', function () {
+      csvDataColl.shift();
+      pool.getConnection((error, connection) => {
+        if (error) {
+          console.log(error);
+        } else {
+          let query = "INSERT INTO users (Name,Age,Country) VALUES ?";
+          connection.query(query, [csvDataColl], (error, res) => {
+            console.log(error || res);
+          });
+        }
+      });
 
-        fs.unlinkSync(path);
-    })
+      fs.unlinkSync(path);
+    });
 
-    stream.pipe(fileStream);
+  stream.pipe(fileStream);
 }
 
+app.get('/export-csv', (req, res) => {
+  pool.getConnection((error, connection) => {
+    if (error) {
+      console.log(error);
+    } else {
+      const query = "SELECT * FROM users";
+      connection.query(query, (error, results) => {
+        if (error) {
+          console.log(error);
+        } else {
+          const filename = "export.csv";
+          res.setHeader('Content-Type', 'text/csv');
+          res.setHeader('Content-Disposition', 'attachment; filename=' + filename);
 
-app.listen(5000, ()=> console.log("Listening on port 5000..."))
+          csv
+            .writeToStream(res, results, { headers: true })
+            .on('error', (error) => {
+              console.log(error);
+            })
+            .on('finish', () => {
+              console.log('CSV file exported');
+            });
+        }
+      });
+    }
+  });
+});
+
+app.listen(5000, () => console.log("Listening on port 5000..."));

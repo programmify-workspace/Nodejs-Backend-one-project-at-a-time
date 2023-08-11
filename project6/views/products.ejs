@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DriveXchange</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.5/bootstrap-icons.min.css">
+</head>
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">DriveXchange</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="container-fluid mt-4 mb-4  mr-4">
+    <div class="row">
+      <div class="col-md-3">
+        <h3>Search Vehicles</h3>
+        <form action="/" method="get">
+          <div class="mb-3">
+            <label for="search" class="form-label">Search</label>
+            <div class="row">
+              <div class="input-group col-md-9">
+                <input type="text" class="form-control" name="search" id="search" value="<%= typeof search !== 'undefined' ? search : '' %>" placeholder="Search vehicles...">
+                <button type="submit" class="btn btn-dark input-group-text"><span class="bi bi-search"></span>Search</button>
+              </div>
+            </div>
+          </div>
+          </form>
+          <h2 class="form-label">Filter</h2>
+          <form action="/filter" method="get">
+          <div class="mb-3">
+            <label for="make" class="form-label">Make</label>
+            <select class="form-select" name="make" id="make">
+              <option selected value="">All Makes</option>
+              <option <%= make == 'Audi' ? 'selected' : '' %> value="Audi">Audi</option>
+              <option <%= make == 'BMW' ? 'selected' : '' %> value="BMW">BMW</option>
+              <option <%= make == 'Chevrolet' ? 'selected' : '' %> value="Chevrolet">Chevrolet</option>
+              <option <%= make === 'Honda' ? 'selected' : '' %> value="Honda">Honda</option>
+              <option <%= make == 'Hyundai' ? 'selected' : '' %> value="Hyundai">Hyundai</option>
+              <option <%= make == 'Jeep' ? 'selected' : '' %> value="Jeep">Jeep</option>
+              <option <%= make == 'Kia' ? 'selected' : '' %> value="Kia">Kia</option>
+              <option <%= make == 'Mercedes-Benz' ? 'selected' : '' %> value="Mercedes-Benz">Mercedes-Benz</option>
+              <option <%= make == 'Mustang' ? 'selected' : '' %> value="Mustang">Mustang</option>
+              <option <%= make == 'Nissan' ? 'selected' : '' %> value="Nissan">Nissan</option>
+              <option <%= make == 'Subaru' ? 'selected' : '' %> value="Subaru">Subaru</option>
+              <!-- Add more brand options as needed -->
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="year" class="form-label">Year of Manufacture</label>
+            <select class="form-select" name="year" id="year">
+              <option selected value="">All Years</option>
+              <option <%= year == 'below2010' ? 'selected' : '' %> value="below2010">Below 2010</option>
+              <option <%= year == 'between2010to2020' ? 'selected' : '' %> value="between2010to2020">Between 2010 and 2020</option>
+              <option <%= year == 'above2020' ? 'selected' : '' %> value="above2020">Above 2020</option>
+              <!-- Add more year options as needed -->
+            </select>
+          </div>
+          <button class="btn btn-dark" type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="col-md-9">
+        <h3>Vehicle Listings</h3>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+            <!-- Vehicle listing cards will be dynamically generated here -->
+            <% cars.forEach((car)=>{ %>
+              <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                  <img src="<%= car.image %>" alt="" srcset="" style="width: 100%; height: 200px; object-fit: cover;">
+                  <h5><%= `${car.year} ${car.make} ${car.model}` %></h5>
+                  <h6>Price: $<%=car.price%></h6>
+                  <button class="btn btn-dark justify-content-end">View details</button>
+                </div>
+              </div>
+            <%}) %>
+              </div>
+
+              
+              <nav aria-label="Page navigation" style="margin: auto;">
+                <ul class="pagination justify-content-end">
+                  <% if (currentPage > 1) { %>
+                    <li class="page-item">
+                      <a class="page-link" href="<% if (!search && !make && !year) { %>?page=<%= currentPage - 1 %><% } else { %>?<% if (search) { %>search=<%= search %>&<% } %><% if (make) { %>make=<%= make %>&<% } %><% if (year) { %>year=<%= year %>&<% } %>page=<%= currentPage - 1 %><% } %>" tabindex="-1">Previous</a>
+                    </li>
+                  <% } %>
+                  <% for (let i = 1; i <= totalPages; i++) { %>
+                    <li class="page-item <%= i === currentPage ? 'active' : '' %>" aria-current="page">
+                      <a class="page-link" id="each pag-link" href="<% if (!search && !make && !year) { %>?page=<%= i %><% } else { %>?<% if (search) { %>search=<%= search %>&<% } %><% if (make) { %>make=<%= make %>&<% } %><% if (year) { %>year=<%= year %>&<% } %>page=<%= i %><% } %>"><%= i %></a>
+                    </li>
+                  <% } %>
+                  <% if (currentPage < totalPages) { %>
+                    <li class="page-item">
+                      <a class="page-link" href="<% if (!search && !make && !year) { %>?page=<%= currentPage + 1 %><% } else { %>?<% if (search) { %>search=<%= search %>&<% } %><% if (make) { %>make=<%= make %>&<% } %><% if (year) { %>year=<%= year %>&<% } %>page=<%= currentPage + 1 %><% } %>">Next</a>
+                    </li>
+                  <% } %>
+                </ul>
+              </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-dark text-light text-center py-3 " style="margin-top: 130px;">
+    &copy; 2023 Vehicle Selling Website. All rights reserved.
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
