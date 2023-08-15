@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const recordsPerPage = 5;
   const offset = (page - 1) * recordsPerPage;
-  const filterTerm = req.query.filter || ''; 
+  const filterTerm = req.query.filter || '';
 
   try {
     const totalRecords = await getAllRecords(); // Get the total number of records for pagination
