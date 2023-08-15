@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <title>Weather App</title>
+</head>
+<body>
+
+    <style>
+        .weather {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+
+    <div class="card">
+        <div class="search-bar">
+            <form action="/" method="get" >
+                <input type="text" name="city" placeholder="Search" class="search">
+                <button title="search" type="submit" class="search-button"><i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+        <div class="weather">
+          <% if (error) { %>
+              <h2 class="city">Weather Data Not Found</h2>
+              <p><%= error %></p>
+          <% } else if (weatherData) { %>
+              <h2 class="city">Weather in <%= weatherData.name %></h2>
+              <h1 class="temp"><%= weatherData.main.temp %>°C</h1>
+              <div class="flex" style="justify-content: center;">
+                  <img src="https://openweathermap.org/img/wn/<%= weatherData.weather[0].icon %>@2x.png" alt="" class="icon">
+                  <div class="description"><%= weatherData.weather[0].description %></div>
+              </div>
+              <div class="humidity">Humidity: <%= weatherData.main.humidity %>%</div>
+              <div class="wind">Wind speed: <%= weatherData.wind.speed %> km/h</div>
+          <% } %>
+      </div>
+    </div>
+
+
+    <script>
+        // Set background image dynamically based on the city
+        const cityName = "<%= weatherData ? weatherData.name : '' %>";
+        const body = document.body;
+        if (cityName) {
+            body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${cityName}')`;
+        }
+    </script>
+</body>
+</html>
