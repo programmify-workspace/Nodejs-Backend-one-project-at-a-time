@@ -1,0 +1,101 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  box-sizing: border-box;
+  height: 100vh;
+  background: #222;
+  background-image: url('https://source.unsplash.com/1600x900/?city');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-size: cover;
+  font-size: 120%;
+}
+.card{
+  background: black;
+  color: #fff;
+  padding: 2em;
+  width: 100%;
+  max-width: 420px;
+  margin: 1em;
+  border-radius: 30px;
+  filter: opacity(80%);
+}
+.search-bar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search {
+  flex: 1;
+  margin-right: 10px;
+}
+.search-button {
+  border: none;
+  cursor: pointer;
+}
+button{
+  margin: 0.1em;
+  border-radius: 50%;
+  border: none;
+  height: 44px;
+  /* padding: 0.2em; */
+  width: 44px;
+  outline: none;
+  background: #7c7c7c2b;
+  color: #fff;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+button:hover{
+  color: #7c7c7c6b;
+}
+.search-bar input{
+  border: none;
+  outline: none;
+  padding: 0.4em 1em;
+  border-radius: 15px;
+  background: #7c7c7c2b;
+  color: #fff;
+  font-family: inherit;
+  font-size: 100%;
+  width: 100%;
+  width: calc(100% - 100px);
+}
+h2.city{
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+h1.temp{
+  margin: 0;
+  margin-bottom: 0.5em;
+}
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.description {
+  text-transform: capitalize;
+  margin-left: 8px;
+}
+
+.weather.loading {
+  visibility: hidden;
+  max-height: 20px;
+  position: relative;
+}
+
+.weather.loading:after {
+  visibility: visible;
+  content: "Loading...";
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 20px;
+}
