@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const path = require('path');
 const ejs = require('ejs');
 const userController = require('./app/controllers/userController');
@@ -8,9 +7,10 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000
+
 // Middlewares and configurations
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set("views", path.join(__dirname, "app", "views")); 
