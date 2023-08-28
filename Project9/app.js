@@ -4,7 +4,7 @@ const path = require('path');
 const ejs = require('ejs');
 const userController = require('./app/controllers/userController');
 const db = require('./app/config/database'); 
-
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000
