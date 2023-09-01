@@ -1,0 +1,256 @@
+*{
+    padding: 0;
+    margin: 0;
+    /* box-sizing: border-box; */
+}
+
+body{
+    background-color:var(--background-color) ;
+    background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */;
+    /* background: linear-gradient(to bottom, var(--background-color), var(--secondary-color)); */
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    
+    /* background-image: url("https://images.unsplash.com/photo-1685266326195-76ad098af5d8?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=900&ixid=MnwxfDB8MXxyYW5kb218MHx8aWJhZGFufHx8fHx8MTY5MTgzMzM3NQ&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1600"); */
+}
+
+:root{
+    --background-color: #a7c4f0 ;
+    --main-color: white;
+    --secondary-color: #011638d2;
+    --secondary-color2: #D4F4DD ;
+    --secondary-color3: rgba(238, 197, 170, 0.295);
+
+    --xxxl-fontSize: 40px;
+    --xxl-fontSize: 30px;
+    --xl-fontSize: 24px;
+    --l-fontSize: 20px;
+    --m-fontSize: 18px;
+    --s-fontsize: 16px;
+    --xs-fontSize: 14px;
+}
+
+.header{
+    background-color: var(--secondary-color);
+    color: var(--main-color);
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    padding:10px 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--main-color);
+}
+
+.logo-div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo{
+    width: 40px
+}
+
+.logo-div h1{
+    font-size: var(--xl-fontSize);
+}
+
+.form_div{
+    border: 1px var(--main-color) solid;
+    padding: 5px 5px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    /* background-color: white; */
+}
+
+.textInput{
+    border: none;
+    outline: none;
+    max-width: 250px;
+    background-color: transparent;
+    font-size: var(--s-fontSize);
+    font-family: 'Poppins', sans-serif ;
+    color: var(--main-color);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 5px 10px;
+    border-right: 1px var(--main-color) solid;
+}
+
+.textInput::placeholder{
+    color: var(--secondary-color2);
+}
+
+.submit-btn{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    /* border-left: 1px #011638 solid; */
+    margin: auto;
+}
+
+.search-icon{
+    padding: 0 10px;
+    font-size: var(--l-fontSize);
+    color: var(--main-color);
+    align-items: center;
+}
+
+.search-icon:hover{
+    color: var(--secondary-color2);
+}
+
+.weather-div-div{
+    margin: 10px;
+}
+
+.weather-div{
+    /* width: 80%; */
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    /* width: 85%; */
+    max-width: 600px;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    /* background-color: var(--secondary-color3); */
+    border: 1px solid var(--main-color);
+    border-radius: 20px;
+    box-shadow: #0116386c 3px 3px 4px;
+}
+
+.weather-div-head{
+    display: flex;
+    padding: 5px 5px;
+    gap: 10px;
+    align-items: center;
+    margin: auto;
+    border-radius: 20px;
+    border: 1px solid var(--main-color);
+    color: var(--main-color);
+    background-color: var(--secondary-color3);
+    margin-bottom: 20px;
+    /* box-shadow: inset 5px 5px 5px; */
+}
+
+.weather-div-head h1{
+    font-size: var(--xxl-fontSize);
+}
+
+.country-div{
+    border-radius: 50%;
+    padding: 5px;
+    background-color: var(--secondary-color);
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.country{
+    color: var(--secondary-color2);
+    font-size: var(--s-fontSize);
+}
+
+.image-and-desc-div{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.img-div{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    background-color: grey;
+    border-radius: 50%;
+}
+
+.img-div img{
+    /* width: 100px; */
+    margin: auto;
+}
+
+.desc{
+    font-size: var(--s-fontSize);
+    color: var(--secondary-color2);
+    text-align: center;
+}
+
+.temp{
+    font-size: var(--xxxl-fontSize);
+    color: var(--main-color);
+}
+
+.weather-atrib{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+.weather-atrib-each{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    /* color: var(--main-color); */
+    
+}
+.weather-atrib-each h3{
+    font-size: var(--m-fontSize);
+    color: var(--main-color);
+}
+.weather-atrib-each p{
+    font-size: var(--s-fontSize);
+    color: var(--secondary-color2);
+}
+
+
+@media screen and (max-width: 600px) {
+    :root{
+        --xxl-fontSize: 28px;
+        --xl-fontSize: 22px;
+        --l-fontSize: 18px;
+        --m-fontSize: 16px;
+        --s-fontsize: 14px;
+        --xs-fontSize: 12px;
+    }
+
+    .logo-div h1{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .weather-atrib{
+        /* width: 80%; */
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+    }
+    .textInput{
+        max-width: 150px;
+    }
+    
+}
+
+@media screen and (max-width: 400px) {
+    .weather-div-head h1{
+        font-size: var(--xl-fontSize);
+    }
+
+    .textInput{
+        max-width: 100px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .textInput{
+        max-width: 60px;
+    }
+}
