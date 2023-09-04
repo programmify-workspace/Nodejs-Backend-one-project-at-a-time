@@ -5,7 +5,7 @@ As an event organizer, I want to create and manage events, handle attendee regis
 
 ## Steps:
 
-q. Create a database schema to store event and attendee data.
+1. Create a database schema to store event and attendee data.
 2. Develop an interface for event creation, modification, and deletion.
 3. Implement a registration system for attendees with validation and capacity management.
 4. Display event details, schedules, and other relevant information to participants.
